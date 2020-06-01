@@ -39,7 +39,7 @@ public class UserServiceTest {
 //        given(userRepository.save(user)).willAnswer(invocation -> invocation.getArgument(0));
         User savedUser = userService.createUser(user);
 
-        verify(userService).createUser(any(User.class));
+        verify(userRepository).save(any(User.class));
 
 
     }
