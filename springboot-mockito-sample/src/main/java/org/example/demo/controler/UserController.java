@@ -1,12 +1,11 @@
-package org.examlpe.demo.controler;
+package org.example.demo.controler;
 
-import org.examlpe.demo.dto.UserDTO;
+import org.example.demo.dto.UserDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collection;
 import java.util.List;
 
 @RequestMapping("/api/1.0.0/users")

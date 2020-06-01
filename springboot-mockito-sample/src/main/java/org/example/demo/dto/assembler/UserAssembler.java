@@ -1,7 +1,7 @@
-package org.examlpe.demo.dto.assembler;
+package org.example.demo.dto.assembler;
 
-import org.examlpe.demo.domain.User;
-import org.examlpe.demo.dto.UserDTO;
+import org.example.demo.domain.User;
+import org.example.demo.dto.UserDTO;
 
 public class UserAssembler {
 

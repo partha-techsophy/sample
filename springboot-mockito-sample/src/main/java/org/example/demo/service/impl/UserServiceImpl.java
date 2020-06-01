@@ -1,17 +1,14 @@
-package org.examlpe.demo.service.impl;
+package org.example.demo.service.impl;
 
-import org.examlpe.demo.domain.User;
-import org.examlpe.demo.dto.UserDTO;
-import org.examlpe.demo.dto.assembler.UserAssembler;
-import org.examlpe.demo.repository.UserRepository;
-import org.examlpe.demo.service.UserService;
+import org.example.demo.domain.User;
+import org.example.demo.repository.UserRepository;
+import org.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @Transactional

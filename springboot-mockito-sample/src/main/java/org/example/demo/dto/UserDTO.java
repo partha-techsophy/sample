@@ -1,6 +1,5 @@
-package org.examlpe.demo.dto;
+package org.example.demo.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

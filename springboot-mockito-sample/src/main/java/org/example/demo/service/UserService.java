@@ -1,7 +1,6 @@
-package org.examlpe.demo.service;
+package org.example.demo.service;
 
-import org.examlpe.demo.domain.User;
-import org.examlpe.demo.dto.UserDTO;
+import org.example.demo.domain.User;
 
 import java.util.Collection;
 

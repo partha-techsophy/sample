@@ -1,8 +1,8 @@
-package org.examlpe.demo.service.port;
+package org.example.demo.service.port;
 
-import org.examlpe.demo.dto.UserDTO;
-import org.examlpe.demo.dto.assembler.UserAssembler;
-import org.examlpe.demo.service.UserService;
+import org.example.demo.dto.UserDTO;
+import org.example.demo.dto.assembler.UserAssembler;
+import org.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
