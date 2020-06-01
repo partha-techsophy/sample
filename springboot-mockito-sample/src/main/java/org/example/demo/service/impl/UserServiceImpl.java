@@ -2,6 +2,7 @@ package org.example.demo.service.impl;
 
 import org.example.demo.domain.User;
 import org.example.demo.repository.UserRepository;
+import org.example.demo.repository.port.UserRepositoryPort;
 import org.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,16 +15,16 @@ import java.util.Optional;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    private final UserRepository userRepository;
+    private final UserRepositoryPort userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepositoryPort userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
     public User createUser(User user) throws  Exception{
-        user = userRepository.save(user);
+        user = userRepository.add(user);
 
         return user;
 
@@ -31,48 +32,36 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateEmail(Long id, String email) throws  Exception{
-        Optional<User> userOpt = this.userRepository.findById(id);
-        if(!userOpt.isPresent()) {
-            throw new Exception("Invalid user");
-        }
-        User user = userOpt.get();
+
+        User user = userRepository.findById(id);
         user.changeEmail(email);
-        userRepository.save(user);
+        userRepository.update(user);
     }
 
     @Override
     public void updatePassword(Long id, String password) throws  Exception{
-        Optional<User> userOpt = this.userRepository.findById(id);
-        if(!userOpt.isPresent()) {
-            throw new Exception("Invalid user");
-        }
-        User user = userOpt.get();
+
+        User user = userRepository.findById(id);
         user.changePassword(password);
-        userRepository.save(user);
+        userRepository.update(user);
     }
 
     @Override
     public boolean validateLogin(String email, String password) throws  Exception {
-        Optional<User> userOpt = this.userRepository.findByEmail(email);
-        if(!userOpt.isPresent()) {
-            throw new Exception("Invalid user");
-        }
-        User user = userOpt.get();
+
+        User user = userRepository.findByEmail(email);
         return user.validatePassword(password);
     }
 
     @Override
     public User getUser(Long id) throws Exception {
-        Optional<User> userOpt = this.userRepository.findById(id);
-        if(!userOpt.isPresent()) {
-            throw new Exception("Invalid user");
-        }
-        return userOpt.get();
+
+        return userRepository.findById(id);
     }
 
     @Override
     public Collection<User> getAll() throws Exception {
-        return  userRepository.findAll();
+        return  userRepository.all();
     }
 
     @Override
