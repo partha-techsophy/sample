@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
+/**
+ * This is the implementation of UserService interface
+ */
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -60,12 +64,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Collection<User> getAll() throws Exception {
+    public List<User> getAll() throws Exception {
         return  userRepository.all();
     }
 
     @Override
-    public Collection<User> getAll(int start, int rows) throws Exception {
+    public List<User> getAll(int start, int rows) throws Exception {
         return null;
     }
 

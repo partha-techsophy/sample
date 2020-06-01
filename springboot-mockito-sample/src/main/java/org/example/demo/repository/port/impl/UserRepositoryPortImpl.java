@@ -1,12 +1,16 @@
 package org.example.demo.repository.port.impl;
 
 import org.example.demo.domain.User;
+import org.example.demo.exception.UserNotFoundException;
 import org.example.demo.repository.UserRepository;
 import org.example.demo.repository.port.UserRepositoryPort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
+import java.text.MessageFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -14,9 +18,13 @@ public class UserRepositoryPortImpl implements UserRepositoryPort {
 
     private UserRepository userRepository;
 
+    private MessageSource messageSource;
+
     @Autowired
-    public UserRepositoryPortImpl(UserRepository userRepository) {
+    public UserRepositoryPortImpl(UserRepository userRepository,
+                                  MessageSource messageSource) {
         this.userRepository = userRepository;
+        this.messageSource = messageSource;
     }
 
     @Override
@@ -45,7 +53,8 @@ public class UserRepositoryPortImpl implements UserRepositoryPort {
         if(userOptional.isPresent()) {
             return userOptional.get();
         } else {
-            throw new Exception("User with this id not found");
+            String message = messageSource.getMessage("user.notfound", null, Locale.getDefault());
+            throw new UserNotFoundException(MessageFormat.format(message, new Object[]{id}));
         }
 
     }

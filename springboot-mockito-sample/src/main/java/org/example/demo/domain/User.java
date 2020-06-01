@@ -3,7 +3,15 @@ package org.example.demo.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
+/**
+ * Root Aggregate for User domain. This should own the user domain. Any data should not be
+ * leaked from this domain using getter and setter
+ * Never allow developer to construct domain object directly. Encapsulate everyting and allow only
+ * behavior that can be managed
+ * TODO - Remove default getter/setter and add only specified getter/setter
+ */
 
 @Entity
 @Table(name = "users")
@@ -15,7 +23,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @NotEmpty(message = "Email should not be empty")
+    @NotEmpty(message = "Email should not be empty")
     @Column(nullable = false, unique = true, length = 100)
     private String email;
 
@@ -26,6 +34,10 @@ public class User {
     private String name;
 
 
+    /*
+    Never allow developer to construct domain object directly. Encapsulate everyting and allow only
+    behavior that can be managed
+     */
     public User of(String name) throws Exception {
         if(name == null || name.isEmpty()) {
             throw new Exception("Invalid name");

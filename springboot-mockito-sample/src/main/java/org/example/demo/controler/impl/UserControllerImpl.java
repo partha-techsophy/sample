@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Controller is decoupled from service and domain using service port
+ */
+
 @RestController
 public class UserControllerImpl implements UserController {
 
@@ -28,15 +32,11 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public ResponseEntity<List<UserDTO>> getAllUsers() throws Exception {
-        return ResponseEntity.ok(Arrays.asList(new UserDTO.Builder()
-                .withDefaults()
-                .build()));
+        return ResponseEntity.ok(userService.getAll());
     }
 
     @Override
     public ResponseEntity<UserDTO> getUserById(Long id) throws Exception {
-        return ResponseEntity.ok(new UserDTO.Builder()
-                .withDefaults()
-                .build());
+        return ResponseEntity.ok(userService.getUser(id));
     }
 }

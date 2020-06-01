@@ -4,6 +4,9 @@ import org.example.demo.domain.User;
 
 import java.util.List;
 
+/**
+ * This UserRepositoryPort to decouple code from DB infrastructure changes
+ */
 public interface UserRepositoryPort {
 
     public User add(User user) throws Exception;

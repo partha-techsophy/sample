@@ -3,6 +3,9 @@ package org.example.demo.dto.assembler;
 import org.example.demo.domain.User;
 import org.example.demo.dto.UserDTO;
 
+/**
+ * Data transfer object converter
+ */
 public class UserAssembler {
 
     public static UserDTO writeToDto(User user) {
