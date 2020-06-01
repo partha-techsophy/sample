@@ -7,11 +7,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class UserDTO {
+    private long id;
     private String email;
     private String password;
     private String name;
 
-    public UserDTO(String email, String password, String name) {
+    public UserDTO(long id, String email, String password, String name) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.name = name;
@@ -21,6 +23,7 @@ public class UserDTO {
         private String email;
         private String password;
         private String name;
+        private long id;
 
         public Builder() {}
 
@@ -29,6 +32,11 @@ public class UserDTO {
             this.name = "Default Name";
             this.email = "default@email.com";
             this.password = "password";
+            return this;
+        }
+
+        public Builder id(long id) {
+            this.id = id;
             return this;
         }
 
@@ -48,7 +56,7 @@ public class UserDTO {
         }
 
         public UserDTO build() {
-            return new UserDTO(email, password, name);
+            return new UserDTO(id, email, password, name);
         }
     }
 }

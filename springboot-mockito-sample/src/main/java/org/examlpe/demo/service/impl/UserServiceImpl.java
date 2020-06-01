@@ -25,9 +25,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(UserDTO userDto) throws  Exception{
-        User user = UserAssembler.writeToUser(userDto);
-        userRepository.save(user);
+    public User createUser(User user) throws  Exception{
+        user = userRepository.save(user);
+
+        return user;
 
     }
 
@@ -64,29 +65,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getUser(Long id) throws Exception {
+    public User getUser(Long id) throws Exception {
         Optional<User> userOpt = this.userRepository.findById(id);
         if(!userOpt.isPresent()) {
             throw new Exception("Invalid user");
         }
-        return UserAssembler.writeToDto(userOpt.get());
+        return userOpt.get();
     }
 
     @Override
-    public Collection<UserDTO> getAll() throws Exception {
-        return  userRepository.findAll()
-                .stream()
-                .map(this::getUserDTO)
-                .collect(Collectors.toList());
+    public Collection<User> getAll() throws Exception {
+        return  userRepository.findAll();
     }
 
     @Override
-    public Collection<UserDTO> getAll(int start, int rows) throws Exception {
+    public Collection<User> getAll(int start, int rows) throws Exception {
         return null;
     }
 
-    private UserDTO getUserDTO(User user) {
-        return  UserAssembler.writeToDto(user);
+    private User getUserDTO(User user) {
+        return  null;
     }
 
 }

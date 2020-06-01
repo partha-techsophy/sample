@@ -19,6 +19,7 @@ import java.util.Optional;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
@@ -33,12 +34,12 @@ public class UserServiceTest {
     @Test
     void shouldSaveUserSuccessfully() throws Exception{
 
-        UserDTO userDTO = new UserDTO.Builder()
-                .withDefaults()
-                .build();
+        User user = new User().of("Name").withPassword("password").withEmail("email@email.com");
+        when(userRepository.save(any(User.class))).thenReturn(user);
+//        given(userRepository.save(user)).willAnswer(invocation -> invocation.getArgument(0));
+        User savedUser = userService.createUser(user);
 
-        userService.createUser(userDTO);
-        verify(userRepository).save(any(User.class));
+        verify(userService).createUser(any(User.class));
 
 
     }

@@ -7,6 +7,7 @@ public class UserAssembler {
 
     public static UserDTO writeToDto(User user) {
         return new UserDTO.Builder()
+                .id(user.getId())
                 .name(user.getName())
                 .email(user.getEmail())
                 .build();
