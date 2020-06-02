@@ -10,9 +10,9 @@ Between Controller and Service there is a Service port which decouples Controlle
 
 Between Service and Repository there is a port which decouples Service and Repository.
 
-To run the demo application execute _gradle bootRun_
+To run the demo application execute `gradle bootRun`
 
-To run test cases in demo application execute _gradle clean test_
+To run test cases in demo application execute `gradle clean test`
 
 ## Details
 
@@ -20,6 +20,25 @@ To run test cases in demo application execute _gradle clean test_
 1. Gradle 6.3 or above
 2. Java 11 or above
 3. IDE - Intellij or Eclipse
+
+###### To test services
+Get all users
+
+`curl --location --request GET 'http://localhost:8080/api/1.0.0/users'`
+
+Get user by id
+
+`curl --location --request GET 'http://localhost:8080/api/1.0.0/users/1'`
+
+Add user
+
+`curl --location --request POST 'http://localhost:8080/api/1.0.0/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"name": "Test user 2",
+	"email": "tu2@email.com",
+	"password": "password"
+}'`
 
 #### Mockito test integration
 This demo project uses [Mockito](https://site.mockito.org/) to test our application.
