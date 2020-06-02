@@ -1,4 +1,4 @@
-package org.example.demo.controler;
+package org.example.demo.controller;
 
 import org.example.demo.dto.UserDTO;
 import org.springframework.http.HttpStatus;

@@ -13,6 +13,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.util.Assert;
 
+import java.util.Optional;
+
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -24,6 +26,9 @@ public class UserServiceTest {
 
     @InjectMocks
     private UserServiceImpl userService;
+
+    @Mock
+    private User userMock;
 
 
     @Test
@@ -43,5 +48,13 @@ public class UserServiceTest {
         //or by assertion statements, match the authToken in the returned object to be equal
         //to the one set by you in the mocked object
         Assertions.assertEquals(savedUser.getName(), user.getEmail());
+    }
+
+    @Test
+    void findUserById() throws  Exception{
+        Long id = 1L;
+        when(userRepository.findById(id)).thenReturn(userMock);
+        Assertions.assertEquals(userService.getUser(id), userMock);
+
     }
 }
