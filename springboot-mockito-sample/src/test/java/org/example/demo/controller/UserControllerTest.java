@@ -3,6 +3,7 @@ package org.example.demo.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.demo.controller.impl.UserControllerImpl;
 import org.example.demo.dto.UserDTO;
+import org.example.demo.exception.UserNotFoundException;
 import org.example.demo.service.port.UserServicePort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -92,4 +93,18 @@ public class UserControllerTest {
         verify(userService).createUser(anyUser.capture());
         assertThat(anyUser.getValue().getEmail()).isEqualTo("default@email.com");
     }
+
+
+    @Test
+    void userNotFoundException() throws  Exception{
+
+        //Mock
+        when(userService.getUser(10L)).thenThrow(new UserNotFoundException("10"));
+
+        this.mockMvc
+                .perform(get("/api/1.0.0/users/10"))
+                .andExpect(status().isNotFound());
+    }
+
+
 }
