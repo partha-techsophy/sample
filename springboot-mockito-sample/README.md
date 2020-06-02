@@ -53,5 +53,47 @@ or by assertion statements, match the email in the returned object to be equal t
 ##### Testing Controller layer
 Initialize the Controller 
 
-`@WebMvcTest(controllers = UserController.class)` @WebMvcTest annotation to fire up an application context that contains only the beans needed for testing a web controller:
-`@ActiveProfiles("Test")`
+`@WebMvcTest(controllers = UserController.class)` @WebMvcTest annotation to fire up an application context that contains only the beans needed for testing a web controller
+
+`@ActiveProfiles("Test")` declare which active bean definition profiles should be used when loading an ApplicationContext for test classes.
+
+`@Autowired MockMvc mockMvc;` initiate MockMvc
+
+`@BeforeEach void setUp()` setup mock data
+
+Create the stub
+`when(userService.getAll()).thenReturn(userList);`
+
+Perform test
+`this.mockMvc
+    .perform(get("/api/1.0.0/users"))
+    .andExpect(status().isOk())
+    .andExpect(jsonPath("$.size()", is(userList.size())))
+    .andExpect(jsonPath("$[0].id", is(1)));`
+    
+For post request ArgumentCaptor can be used to test POST data
+    
+`ArgumentCaptor<UserDTO> anyUser = forClass(UserDTO.class);
+        verify(userService).createUser(anyUser.capture());
+        assertThat(anyUser.getValue().getEmail()).isEqualTo("default@email.com");`
+        
+Testing Exception
+`this.mockMvc
+        .perform(get("/api/1.0.0/users/10"))
+        .andExpect(status().isNotFound());`        
+        
+        
+##### Testing RestClient
+Initialize the test class
+`@RestClientTest` annotation helps simplify and speed up the testing of REST clients in your Spring applications.
+@RestClientTest ensures that Jackson and GSON support is auto-configured, and also adds pre-configured RestTemplateBuilder and MockRestServiceServer instances to the context.
+
+`@Autowired MockRestServiceServer server;` initialize mockserver.
+
+To test call the third party service and test
+`server
+.expect(once(), requestTo(startsWith("/some-client")))
+.andExpect(method(HttpMethod.GET))`
+
+
+        
