@@ -22,6 +22,8 @@ To run test cases in demo application execute `gradle clean test`
 3. IDE - Intellij or Eclipse
 
 ###### To test services
+Using H2 in memory DB to test the sample services
+ 
 Get all users
 
 `curl --location --request GET 'http://localhost:8080/api/1.0.0/users'`
