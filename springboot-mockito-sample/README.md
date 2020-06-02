@@ -1,6 +1,6 @@
-Sample Mockito project
+#### Sample Mockito project
 
-This project follows Domain Driven Design
+This project follows **Domain Driven Design**
 
 [Creating Coding Excellence with Domain-driven Design](https://medium.com/swlh/creating-coding-excellence-with-domain-driven-design-88f73d2232c3)
 
