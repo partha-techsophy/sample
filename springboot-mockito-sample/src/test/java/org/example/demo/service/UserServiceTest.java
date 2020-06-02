@@ -45,7 +45,7 @@ public class UserServiceTest {
         //verify method
         verify(userRepository, times(1)).add(any(User.class));
 
-        //or by assertion statements, match the authToken in the returned object to be equal
+        //or by assertion statements, match the email in the returned object to be equal
         //to the one set by you in the mocked object
         Assertions.assertEquals(savedUser.getName(), user.getEmail());
     }
