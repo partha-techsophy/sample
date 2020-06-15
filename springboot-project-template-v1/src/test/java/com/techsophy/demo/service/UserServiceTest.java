@@ -1,0 +1,60 @@
+package com.techsophy.demo.service;
+
+import com.techsophy.demo.domain.User;
+import com.techsophy.demo.repository.UserRepository;
+import com.techsophy.demo.repository.port.UserRepositoryPort;
+import com.techsophy.demo.repository.port.impl.UserRepositoryPortImpl;
+import com.techsophy.demo.service.impl.UserServiceImpl;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.util.Assert;
+
+import java.util.Optional;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
+
+@ExtendWith(MockitoExtension.class)
+public class UserServiceTest {
+
+    @Mock
+    private UserRepositoryPortImpl userRepository;
+
+    @InjectMocks
+    private UserServiceImpl userService;
+
+    @Mock
+    private User userMock;
+
+
+    @Test
+    void shouldSaveUserSuccessfully() throws Exception{
+
+        //Create sample User object and set all the properties
+        User user = new User();
+        when(userRepository.add(any(User.class))).thenReturn(user);
+
+        //Create sample User object and set all the properties
+        User savedUser = userService.createUser(user);
+
+        //You have two ways to test, you can either verify that save method was invoked by
+        //verify method
+        verify(userRepository, times(1)).add(any(User.class));
+
+        //or by assertion statements, match the email in the returned object to be equal
+        //to the one set by you in the mocked object
+        Assertions.assertEquals(savedUser.getName(), user.getEmail());
+    }
+
+    @Test
+    void findUserById() throws  Exception{
+        Long id = 1L;
+        when(userRepository.findById(id)).thenReturn(userMock);
+        Assertions.assertEquals(userService.getUser(id), userMock);
+
+    }
+}
