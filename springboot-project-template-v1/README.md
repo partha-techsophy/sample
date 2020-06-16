@@ -21,6 +21,10 @@ To run test cases in demo application execute `gradle clean test`
 2. Java 11 or above
 3. IDE - Intellij or Eclipse
 
+###### Tools & Plugins
+1. [Sonarlint](https://www.sonarlint.org/) - Code quality
+2. [JaCoCo ](https://www.eclemma.org/) - Test report
+
 ###### To test services
 Using H2 in memory DB to test the sample services
  
@@ -45,7 +49,7 @@ Add user
 ### Project structure
 The project has the following folder
 
-###### java folder
+##### java folder
 1. config - Set up the basic support we need for an 
 MVC project, such as registering controllers and mappings, 
 type converters, validation support, message converters. Configure your CORS here.
@@ -70,7 +74,7 @@ type converters, validation support, message converters. Configure your CORS her
     * impl - Implement services
     * port - Decouple service from controller
     
-###### resources folder
+##### resources folder
 1. messages/error_message.properties - Custom error messages. Use ResourceBundleMessageSource to read error messages. 
 2. application.properties - Application configuration
 3. data.sql - DB initialisation 
