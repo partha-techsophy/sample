@@ -25,6 +25,7 @@ To run test cases in demo application execute `gradle clean test`
 1. [Sonarlint](https://www.sonarlint.org/) - Code quality
 2. [JaCoCo ](https://www.eclemma.org/) - Test report
 
+
 ###### To test services
 Using H2 in memory DB to test the sample services
  
