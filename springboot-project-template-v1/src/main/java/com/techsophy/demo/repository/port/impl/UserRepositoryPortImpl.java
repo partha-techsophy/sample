@@ -21,9 +21,9 @@ import java.util.Optional;
 @Service
 public class UserRepositoryPortImpl implements UserRepositoryPort {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
 
     Logger logger = LoggerFactory.getLogger(UserRepositoryPortImpl.class);
 
@@ -61,7 +61,7 @@ public class UserRepositoryPortImpl implements UserRepositoryPort {
             return userOptional.get();
         } else {
             String message = messageSource.getMessage("user.notfound", null, Locale.getDefault());
-            String formattedMessage = MessageFormat.format(message, new Object[]{id});
+            String formattedMessage = MessageFormat.format(message, id);
             logger.warn(formattedMessage);
             throw new UserNotFoundException(formattedMessage);
         }
@@ -74,7 +74,7 @@ public class UserRepositoryPortImpl implements UserRepositoryPort {
         if(userOptional.isPresent()) {
             return userOptional.get();
         } else {
-            throw new Exception("User with this email not found");
+            throw new UserNotFoundException("User with this email not found");
         }
     }
 }

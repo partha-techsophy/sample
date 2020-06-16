@@ -17,7 +17,7 @@ import java.util.List;
 @RestController
 public class UserControllerImpl implements UserController {
 
-    private UserServicePort userService;
+    private final UserServicePort userService;
 
     @Autowired
     public UserControllerImpl(UserServicePort userService) {

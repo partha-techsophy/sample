@@ -22,6 +22,9 @@ import java.time.Instant;
 @Data
 @AllArgsConstructor
 public class ErrorDetails {
+    /**
+     * ISO date format
+     */
     @JsonFormat(shape = JsonFormat.Shape.STRING ,pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
     private Instant timestamp;
     private String message;

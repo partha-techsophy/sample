@@ -6,8 +6,11 @@ import com.techsophy.demo.dto.UserDTO;
 /**
  * Data transfer object converter
  */
-public class UserAssembler {
+public final class UserAssembler {
 
+    private UserAssembler() {
+
+    }
     public static UserDTO writeToDto(User user) {
         return new UserDTO.Builder()
                 .id(user.getId())

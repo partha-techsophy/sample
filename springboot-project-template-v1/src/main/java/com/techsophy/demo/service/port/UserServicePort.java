@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserServicePort {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public UserServicePort(UserService userService) {

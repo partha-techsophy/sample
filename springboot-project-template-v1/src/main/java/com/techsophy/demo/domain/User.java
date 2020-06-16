@@ -1,5 +1,7 @@
 package com.techsophy.demo.domain;
 
+import com.techsophy.demo.exception.InvalidEmailException;
+import com.techsophy.demo.exception.InvalidInputException;
 import lombok.*;
 
 import javax.persistence.*;
@@ -44,7 +46,7 @@ public class User {
      */
     public User of(String name) throws Exception {
         if(name == null || name.isEmpty()) {
-            throw new Exception("Invalid name");
+            throw new InvalidInputException("Invalid name");
         }
         this.setName(name);
         return this;
@@ -52,7 +54,7 @@ public class User {
 
     public User withEmail(String email) throws Exception {
         if(email == null || email.isEmpty()) {
-            throw new Exception("Invalid email");
+            throw new InvalidEmailException("Invalid email");
         }
         this.setEmail(email);
         return this;
@@ -60,7 +62,7 @@ public class User {
 
     public User withPassword(String password) throws Exception {
         if(password == null || password.isEmpty()) {
-            throw new Exception("Invalid password");
+            throw new InvalidInputException("Invalid password");
         }
         this.password = password;
         return this;
@@ -68,21 +70,21 @@ public class User {
 
     public void changeEmail(String email) throws Exception{
         if(email == null || email.isEmpty()) {
-            throw new Exception("Invalid email");
+            throw new InvalidInputException("Invalid email");
         }
         this.email = email;
     }
 
     public void changePassword(String password) throws Exception{
         if(password == null || password.isEmpty()) {
-            throw new Exception("Invalid password");
+            throw new InvalidInputException("Invalid password");
         }
         this.password = password;
     }
 
     public void changeName(String name) throws Exception{
         if(name == null || name.isEmpty()) {
-            throw new Exception("Invalid name");
+            throw new InvalidInputException("Invalid name");
         }
         this.name = name;
     }
@@ -90,7 +92,7 @@ public class User {
     public boolean validatePassword(String password) throws Exception{
 
         if(!this.password.equals(password)) {
-            throw new Exception("Invalid password");
+            throw new InvalidInputException("Invalid password");
         }
 
         return true;
